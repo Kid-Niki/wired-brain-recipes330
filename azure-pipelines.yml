@@ -17,3 +17,21 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+  jobs:
+- job: e2e_tests
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.14'
+    displayName: 'Install Node.js'
+  - script: npm install
+    displayName: 'Install TestCafe'
+  - script: npm test
+    displayName: 'Run TestCafe Tests'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/report.xml'
+      testResultsFormat: 'JUnit'
