@@ -21,7 +21,3 @@ jobs:
     inputs:
       testResultsFiles: '**/report.xml'
       testResultsFormat: 'JUnit'
-
-steps:
-
-
